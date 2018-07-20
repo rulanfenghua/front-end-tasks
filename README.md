@@ -1,3 +1,3 @@
 front-end-tasks
 
-[**notes**](https://github.com/rulanfenghua/front-end/blob/master/notes.md)
+[**notes**](https://github.com/rulanfenghua/front-end-tasks/blob/master/notes.md)
