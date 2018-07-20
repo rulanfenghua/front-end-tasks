@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        var big = {
+            a: 1,
+            b: 2
+        };
+
+        console.log(document.querySelector('body'));
+        var canvas=document.querySelector('#canvas');
+        if (canvas.getContext) {
+        	var ctx=canvas.getContext('2d');
+        }
+        console.log(ctx);
+    }
+    </script>
+    <style type="text/css">
+    
+    </style>
+</head>
+<body>
+	<canvas id="canvas" width="150" height="150"></canvas>
+</body>
+</html>
