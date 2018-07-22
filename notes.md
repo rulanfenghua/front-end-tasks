@@ -44,8 +44,8 @@ user-scalable：缩放控制；initial-scale：缩放比例
 </li>\
 '
 ```
-***定义名称***
 ```
+自定义名称
 kebab-case (短横线分隔命名)；PascalCase (驼峰式命名) 
 ```
 ```css
@@ -109,7 +109,8 @@ for (let n of fibonacci) {
 }
 ```
 ***Promises***
-```
+```javascript
+import() 会返回一个 promise，它可以和 async 函数一起使用。
 一个 Promise 就是一个代表了异步操作最终完成或者失败的对象。
 function timeout(duration = 0) {
     return new Promise((resolve, reject) => {
@@ -228,6 +229,22 @@ npm 脚本(npm script)
 },
 然后npm run build
 ```
+```
+代码分离
+main bundle 会随着自身的新增内容的修改，而发生变化。
+vendor bundle 会随着自身的 module.id 的修改，而发生变化。
+manifest bundle 会因为当前包含一个新模块的引用，而发生变化。
+```
+***插件***
+1. *SplitChunksPlugin*
+```javascript
+new webpack.optimize.SplitChunksPlugin({
+          
+}),
+new webpack.optimize.RuntimeChunkPlugin({
+            name: 'manifest'
+}),
+```
 
 ## Vuejs
 ```
@@ -287,8 +304,10 @@ git push [-u] <repository> <branch> # 推送master分支
 ```
 4. *获取远程仓库或者本地分支*
 ```bash
-git pull <repository>
+git pull <repository> <branch>
 # 等于git fetch和git merge
+# git fetch origin
+# git merge origin/next
 ```
 5. *创建本地分支并且关联远程分支*
 ```bash
