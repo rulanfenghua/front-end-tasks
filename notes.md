@@ -251,6 +251,9 @@ new webpack.optimize.RuntimeChunkPlugin({
 一个 Vue 应用由一个通过 new Vue 创建的根 Vue 实例，以及可选的嵌套的、可复用的组件树组成。
  Vue 组件都是 Vue 实例，并且接受相同的选项对象 (一些根实例特有的选项除外)。组件是可复用的 Vue 实例
 ```
+```
+v-on 缩写@；v-bind 缩写:
+```
 ***API***
 ```
 全局
@@ -259,11 +262,71 @@ new webpack.optimize.RuntimeChunkPlugin({
 指令
 内置组件
 ```
+*实例属性*
+```javascript
+vm.$attrs
+类型：{ [key: string]: string }
+只读
+详细：
+包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind="$attrs" 传入内部组件——在创建高级别的组件时非常有用。
+```
+*实例方法/事件*
+```
+vm.$emit( eventName, […args] )
+参数：
+{string} eventName
+[...args]
+
+触发当前实例上的事件。附加参数都会传给监听器回调。
+```
 ```
 只有当实例被创建时 data 中存在的属性才是响应式的
 ```
 ```
 特殊变量 $event 传入原始的 DOM 事件
+```
+```
+禁用特性继承
+inheritAttrs: false
+```
+***组件***
+*在组件上使用v-model*
+```javascipt
+为了让v-model正常工作，这个组件内的 <input> 必须：
+将其 value 特性绑定到一个名叫 value 的 prop 上
+在其 input 事件被触发时，将新的值通过自定义的 input 事件抛出
+
+Vue.component('custom-input', {
+  props: ['value'],
+  template: `
+    <input
+      v-bind:value="value"
+      v-on:input="$emit('input', $event.target.value)"
+    >
+  `
+})
+
+使用：
+<custom-input v-model="searchText"></custom-input>
+
+例子：
+Vue.component('base-checkbox', {
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
+  props: {
+    checked: Boolean
+  },
+  template: `
+    <input
+      type="checkbox"
+      v-bind:checked="checked"
+      v-on:change="$emit('change', $event.target.checked)"
+    >
+  `
+})
+model 选项可以用来避免冲突
 ```
 
 ## bash
