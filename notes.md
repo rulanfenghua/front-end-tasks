@@ -4,8 +4,8 @@
 - [Nodejs](#nodejs)
 - [webpack](#webpack)
 - [Vuejs](#vuejs)
-- [bash](#bash)
-- [git](#git)
+- [Bash](#bash)
+- [Git](#git)
 - [sublime](#sublime)
 
 ## HTML
@@ -347,7 +347,7 @@ Vue.component('base-checkbox', {
 model 选项可以用来避免冲突
 ```
 
-## bash
+## Bash
 ```bash
 #!/bin/bash
 # This script will print your username.
@@ -359,8 +359,13 @@ whoami
 一个程序的输出当做另一个程序的输入
 管道符号：|；管道：pipe
 ```
+#### npm
+```bash
+npm list -g --depth 0
+# 查看全局安装的包
+```
 
-## git
+## Git
 ##### gitbash命令
 1. 显示历史
 ```bash
