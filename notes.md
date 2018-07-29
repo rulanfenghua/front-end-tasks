@@ -366,7 +366,7 @@ npm list -g --depth 0
 ```
 
 ## Git
-##### gitbash命令
+#### gitbash命令
 1. 显示历史
 ```bash
 git log --graph --pretty=oneline --abbrev-commit
