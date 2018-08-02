@@ -2,23 +2,22 @@
 - [ES6](#es6)
 - [jQuery](#jquery)
 - [Nodejs](#nodejs)
-- [webpack](#webpack)
+- [Webpack](#webpack)
 - [Vuejs](#vuejs)
 - [Bash](#bash)
 - [Git](#git)
-- [sublime](#sublime)
+- [Sublime](#sublime)
 
 ## HTML
-```html
+```
 <a href="javascript:viod(0);"></a>
-<script type="text/javascript">
 页面跳转为空（死链）
 ```
-```html
+```
 <a name="label">锚（文本）</a>
 <a href="#label">文本</a>
 ```
-```html
+```
 模板字面量 是允许嵌入表达式的字符串字面量。你可以使用多行字符串和字符串插值功能。在ES2015规范的先前版本中被称为“模板字符串”。
 `
 <div class="blog-post">
@@ -38,12 +37,12 @@
 自定义名称
 kebab-case (短横线分隔命名)；PascalCase (驼峰式命名) 
 ```
-meta标签
 ```
+meta标签
 <meta>标签；用于描述网页的元信息
 ```
+```
 视口
-```html
 <meta name="viewport">视口
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 user-scalable：缩放控制；initial-scale：缩放比例
@@ -64,8 +63,20 @@ user-scalable：缩放控制；initial-scale：缩放比例
   [ font-style: <style>; ]
 }
 ```
-CSS Transitions
 ```
+initial 是将属性的初始值( initial value)赋给元素
+(Sass 中类似 initial 或 sans-serif 的标识符无须引用起来)
+
+p {
+  color: red;
+}
+
+em {
+  color: initial;
+}
+```
+```
+CSS Transitions
 transition-property
 transition-duration
 transition-timing-function
@@ -122,7 +133,7 @@ for (let n of fibonacci) {
 }
 ```
 #### Promises
-```javascript
+```
 import() 会返回一个 promise，它可以和 async 函数一起使用。
 一个 Promise 就是一个代表了异步操作最终完成或者失败的对象。
 function timeout(duration = 0) {
@@ -148,8 +159,8 @@ var p = timeout(1000).then(() => {
 [clearQueue ]：指示是否取消以列队动画；false
 [, jumpToEnd ]:指示是否当前动画立即完成；false
 ```
-#### jQuery基本结构
-```javascript
+#### 基本结构
+```
 立即执行函数表达式
 (function(global, factory) {
     factory(global);
@@ -201,9 +212,8 @@ __dirname
 当前模块的文件夹名称。等同于 __filename 的 path.dirname() 的值。
 ```
 #### Express
-
-中间件
 ```
+中间件
 Express 是一个自身功能极简，完全是由路由和中间件构成一个的 web 开发框架：从本质上来说，一个 Express 应用就是在调用各种中间件。
 
 中间件（Middleware） 是一个函数，它可以访问请求对象（request object (req)）, 响应对象（response object (res)）, 和 web 应用中处于请求-响应循环流程中的中间件，一般被命名为 next 的变量。
@@ -217,7 +227,7 @@ Express 应用可使用如下几种中间件：
 第三方中间件
 ```
 
-## webpack
+## Webpack
 ```
 CLI方式
 npx webpack --config webpack.config.js
@@ -250,9 +260,9 @@ manifest bundle 会因为当前包含一个新模块的引用，而发生变化�
 webpack 根据构建目标(build target)为这些选项提供了合理的默认配置。
 ```
 #### 插件
-
+```
 SplitChunksPlugin
-```javascript
+
 new webpack.optimize.SplitChunksPlugin({
           
 }),
@@ -288,16 +298,18 @@ inheritAttrs: false
 指令
 内置组件
 ```
+```
 实例属性
-```javascript
+
 vm.$attrs
 类型：{ [key: string]: string }
 只读
 详细：
 包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind="$attrs" 传入内部组件——在创建高级别的组件时非常有用。
 ```
-实例方法/事件
 ```
+实例方法/事件
+
 vm.$emit( eventName, […args] )
 参数：
 {string} eventName
@@ -306,8 +318,9 @@ vm.$emit( eventName, […args] )
 触发当前实例上的事件。附加参数都会传给监听器回调。
 ```
 #### 组件
+```
 在组件上使用v-model
-```javascipt
+
 其中v-model：在表单控件或者组件上创建双向绑定。
 
 为了让v-model正常工作，这个组件内的 <input> 必须：
@@ -354,19 +367,19 @@ model 选项可以用来避免冲突
 whoami
 #!:shebang;是重定向
 ```
-管道
 ```
+管道
 一个程序的输出当做另一个程序的输入
 管道符号：|；管道：pipe
 ```
-#### npm
+#### NPM
 ```bash
 npm list -g --depth 0
 # 查看全局安装的包
 ```
 
 ## Git
-#### gitbash命令
+#### 命令
 1. 显示历史
 ```bash
 git log --graph --pretty=oneline --abbrev-commit
@@ -380,11 +393,12 @@ git reset --hard <commit> # 重置HEAD并回滚工作区
 git reset -- <filename> # 清空缓存区
 git reset --hard # 清空缓存区并回滚工作区
 git checkout -- <filename> # 回滚工作区
+# 使用.回滚全部
 ```
 3. 创建远程仓库并且推送
 ```bash
-git remote -v 查看远程仓库信息
-git remote add <repository> <url> 
+git remote [-v] 查看远程仓库信息
+git remote add <repository> <url> # repository为：origin或者upstream
 git push [-u] <repository> <branch> # 推送master分支
 # -u:--set-upstream;创建关联
 ```
@@ -432,7 +446,7 @@ git tag -d <tagname> # 删除一个本地标签
 git push <repository> :refs/tags/<tagname> # 删除一个远程标签
 ```
 
-## sublime
+## Sublime
 #### 快捷键
 1. 操作
 ```
@@ -510,4 +524,3 @@ Alt + Shift + 5： 进行上下左右分屏（即分为四屏）
 Ctrl + 数字键： 跳转到指定屏
 Ctrl + Shift + 数字键： 将当前屏移动到指定屏
 ```
-
