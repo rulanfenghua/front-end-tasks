@@ -67,16 +67,10 @@ user-scalable：缩放控制；initial-scale：缩放比例
 }
 ```
 ```
-initial 是将属性的初始值( initial value)赋给元素
-(Sass 中类似 initial 或 sans-serif 的标识符无须引用起来)
-
-p {
-  color: red;
-}
-
-em {
-  color: initial;
-}
+inherit 关键字使得元素获取其父元素的计算值(computed value )；
+对于非继承属性，一般使用使用“initial”或“unset”作为替代；
+transparent 初始值。
+(Sass 中类似 inherit 或 sans-serif 的标识符无须引用起来)
 ```
 ```
 CSS Transitions
@@ -88,6 +82,75 @@ transition-timing-function
 transition-delay
 
 简写：transition: <property><duration><time-function><delay>
+```
+```
+resolution
+@media属性：定义设备的分辨率
+
+dppx:Represents the number of dots per px unit.
+
+@media (min-resolution: 300dpi) { ... }
+```
+[<resolution>](https://developer.mozilla.org/en-US/docs/Web/CSS/resolution)
+```
+粘性定位
+position: sticky;
+须指定 top, right, bottom 或 left 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。
+```
+```
+FLEX CSS 弹性盒子布局
+flex属性 flex: <flex-grow><flex-shrink><flex-basis>
+flex-grow 属性定义弹性盒子项（flex item）的拉伸因子。
+flex-shrink 属性指定了 flex 元素的收缩规则。
+flex-basis 指定了 flex 元素在主轴方向上的初始大小。
+```
+```
+Sticky Footer
+页面结构：
+<div class="wrapper">
+    <div class="content">< !-- 页面主体内容区域 --></div>
+</div>
+<div class="footer">< !-- 需要做到 Sticky Footer 效果的页脚 --></div>
+
+方式1（relative）：
+.wrapper {
+  min-height: 100%;
+  .content {
+    padding-bottom: 32px;
+  }
+}
+.footer {
+  position: relative;
+  margin-top: -32px;
+}
+
+页面结构：
+<div class="wrapper">
+    <div class="content">< !-- 页面主体内容区域 --></div>
+    <div class="footer">< !-- 需要做到 Sticky Footer 效果的页脚 --></div>
+</div>
+
+方式2（absolute）：
+.wrapper {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 32px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    height: 32px;
+}
+
+方式3（flex）：
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.content {
+    flex: 1;
+}
 ```
 <!-- ![cubic-bezier](cubic-bezier,example.png) -->
 
