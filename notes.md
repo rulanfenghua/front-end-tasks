@@ -1,5 +1,6 @@
 - [HTML](#html)
-  - [CSS](#css)
+- [CSS](#css)
+  - [写法](#写法)
 - [ES6](#es6)
 - [jQuery](#jquery)
 - [Nodejs](#nodejs)
@@ -50,7 +51,8 @@ meta标签
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 user-scalable：缩放控制；initial-scale：缩放比例
 ```
-#### CSS
+
+## CSS
 ```
 @font-face
 允许网页开发者为其网页指定在线字体
@@ -104,6 +106,11 @@ flex-grow 属性定义弹性盒子项（flex item）的拉伸因子。
 flex-shrink 属性指定了 flex 元素的收缩规则。
 flex-basis 指定了 flex 元素在主轴方向上的初始大小。
 ```
+```
+CSS函数
+width: calc(100% - 80px);
+```
+#### 写法
 ```
 Sticky Footer
 页面结构：
@@ -446,13 +453,13 @@ npm list -g --depth 0
 
 ## Git
 #### 命令
-1. 显示历史
+1. 历史
 ```bash
 git log --graph --pretty=oneline --abbrev-commit
 # --graph：合并图
 git reflog # 命令历史
 ```
-2. 撤销修改
+2. 修改
 ```bash
 git reset <commit> # 重置HEAD
 git reset --hard <commit> # 重置HEAD并回滚工作区
@@ -461,51 +468,38 @@ git reset --hard # 清空缓存区并回滚工作区
 git checkout -- <filename> # 回滚工作区
 # 使用.回滚全部
 ```
-3. 创建远程仓库并且推送
+3. 远程仓库
 ```bash
 git remote [-v] 查看远程仓库信息
 git remote add <repository> <url> # repository为：origin或者upstream
 git push [-u] <repository> <branch> # 推送master分支
 # -u:--set-upstream;创建关联
+git remote prune <repository> # 清理远程branch
 ```
-4. 获取远程仓库或者本地分支
+4. pull
 ```bash
 git pull <repository> <branch>
 # 等于git fetch和git merge
 # git fetch origin
 # git merge origin/next
 ```
-5. 创建本地分支并且关联远程分支
+5. 分支
 ```bash
-git checkout -b <branch> <repository>/<branch>
-git branch --set-upstream <branch> <repository>/<branch>
-# -u:--set-upstream
-```
-6. 创建分支合并分支删除分支
-```bash
-git checkout -b <branch>
-# -b:创建
-git merge --no-ff -m <message> <branch>
+git branch [-a] # 列出
+git branch <branch> <repository> # 创建分支
+git checkout <branch> # 切换
+git merge --no-ff -m <message> <branch> # 合并
 # --no-of:禁用Fast forward
 git branch -d <branch>
+git branch -dr <repository>/<branch> # 删除远程分支
+# -d:--delete;-r:--remotes
+git gc # 清理本地git对象
 ```
-7. 重置分支
-```bash
-git rebase <upstream> [<branch>]
-```
-8. 储藏
-```bash
-git stash [save <message>]
-git stash list # 查看储藏
-git stash clear
-git stash drop stash@{0}
-git stash apply stash@{0}
-```
-9. 标签
+6. 标签
 ```bash
 git tag [-a <tagname>] [-m <message>] [<commit id>]
 git tag # 查看标签
-git show <tagname> #查看标签信息
+git show <tagname> # 查看标签信息
 git push <repository> <tagname> # 推送一个本地标签
 git push <repository> --tags # 推送全部未推送过的本地标签
 git tag -d <tagname> # 删除一个本地标签
