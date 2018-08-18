@@ -1,4 +1,5 @@
 - [HTML](#html)
+- [JS](#js)
 - [CSS](#css)
   - [写法](#写法)
 - [ES6](#es6)
@@ -50,6 +51,37 @@ meta标签
 <meta name="viewport">视口
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 user-scalable：缩放控制；initial-scale：缩放比例
+```
+
+## JS
+```
+call() ;aplly() ;bind()
+call() 方法调用一个函数, 其具有一个指定的this值和分别地提供的参数
+apply() 方法调用一个函数, 其具有一个指定的this值，以及作为一个数组（或类似数组的对象）提供的参数
+bind()方法创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列
+
+指定的this值为null和undefined的this值会自动指向全局对象(浏览器中就是window对象)，同时值为原始值(数字，字符串，布尔值)的this会指向该原始值的自动包装对象
+```
+```
+TouchEvent
+```
+[TouchEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/TouchEvent)
+```
+WheelEvent
+```
+[WheelEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/WheelEvent)
+```
+兼容获取scrollTop
+
+let t = {};
+// For scrollX
+(((t = document.documentElement) || (t = document.body.parentNode))
+  && typeof t.scrollLeft == 'number' ? t : document.body).scrollLeft
+// For scrollY
+(((t = document.documentElement) || (t = document.body.parentNode))
+  && typeof t.scrollTop == 'number' ? t : document.body).scrollTop
+
+另有：window.pageXOffset 和 window.pageYOffset
 ```
 
 ## CSS
@@ -109,6 +141,14 @@ flex-basis 指定了 flex 元素在主轴方向上的初始大小。
 ```
 CSS函数
 width: calc(100% - 80px);
+```
+```
+块格式化上下文（Block Formatting Context，BFC）
+```
+[块格式化上下文](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context)
+```
+box-shadow 以由逗号分隔的列表来描述一个或多个阴影效果。
+box-shadow: [inset? && [ <offset-x> <offset-y> <blur-radius>? <spread-radius>? <color>? ]]
 ```
 #### 写法
 ```
@@ -459,7 +499,7 @@ git log --graph --pretty=oneline --abbrev-commit
 # --graph：合并图
 git reflog # 命令历史
 ```
-2. 修改
+2. 撤销修改
 ```bash
 git reset <commit> # 重置HEAD
 git reset --hard <commit> # 重置HEAD并回滚工作区
@@ -473,26 +513,30 @@ git checkout -- <filename> # 回滚工作区
 git remote [-v] 查看远程仓库信息
 git remote add <repository> <url> # repository为：origin或者upstream
 git push [-u] <repository> <branch> # 推送master分支
-# -u:--set-upstream;创建关联
-git remote prune <repository> # 清理远程branch
+git push <repository> --delete <branch>
+git push <repository> :<branch>
+# 删除远程分支
 ```
 4. pull
 ```bash
 git pull <repository> <branch>
 # 等于git fetch和git merge
 # git fetch origin
-# git merge origin/next
+# git merge origin/master
+git pull -p
+# 在pull之后清理本地分支
 ```
 5. 分支
 ```bash
-git branch [-a] # 列出
-git branch <branch> <repository> # 创建分支
+git branch [-a] # 详情
+git branch <branch> [<repository>] 
+git checkout -b <branch>
+# 创建分支
 git checkout <branch> # 切换
 git merge --no-ff -m <message> <branch> # 合并
 # --no-of:禁用Fast forward
 git branch -d <branch>
-git branch -dr <repository>/<branch> # 删除远程分支
-# -d:--delete;-r:--remotes
+git remote prune <repository> # 清理本地分支
 git gc # 清理本地git对象
 ```
 6. 标签
@@ -504,6 +548,12 @@ git push <repository> <tagname> # 推送一个本地标签
 git push <repository> --tags # 推送全部未推送过的本地标签
 git tag -d <tagname> # 删除一个本地标签
 git push <repository> :refs/tags/<tagname> # 删除一个远程标签
+```
+7. 版本回退
+```bash
+git push -f 
+# 方式1：强制推送
+git revert <commit> # 方式2：替代reset
 ```
 
 ## Sublime

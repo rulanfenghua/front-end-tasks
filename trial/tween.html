@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://unpkg.com/@tweenjs/tween.js"></script>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+// var position = { x: 100, y: 0 };
+var b= {};
+b.num=2;
+function animate() {
+  requestAnimationFrame(animate);
+  TWEEN.update();
+}
+new TWEEN.Tween(b)
+  .to({num: 10}, 750)
+  .start()
+  .onUpdate(function(object) {
+  	console.log(object);
+  });
+animate();
+</script>
+</html>
