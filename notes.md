@@ -529,9 +529,7 @@ git pull -p
 5. 分支
 ```bash
 git branch [-a] # 详情
-git branch <branch> [<repository>] 
-git checkout -b <branch>
-# 创建分支
+git checkout -b <branch> # 创建分支
 git checkout <branch> # 切换
 git merge --no-ff -m <message> <branch> # 合并
 # --no-of:禁用Fast forward
@@ -549,11 +547,14 @@ git push <repository> --tags # 推送全部未推送过的本地标签
 git tag -d <tagname> # 删除一个本地标签
 git push <repository> :refs/tags/<tagname> # 删除一个远程标签
 ```
-7. 版本回退
+7. 版本回退和其它
 ```bash
 git push -f 
 # 方式1：强制推送
 git revert <commit> # 方式2：替代reset
+git mv [-v] [-f] [-n] [-k] <source> <destination>
+# 部署dist目录下的代码
+git subtree push --prefix dist origin gh-pages
 ```
 
 ## Sublime

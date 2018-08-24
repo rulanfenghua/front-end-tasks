@@ -116,7 +116,7 @@
       '$route'(to, from) {
         this.$nextTick(() => {
           if (this.isFix) {
-          window.scrollTo(0, 0)  // 兼容chrome
+          // window.scrollTo(0, 0)  // 兼容chrome
           window.scrollTo(0, this.headerHeight)
         } else {
           window.scrollTo(0, 0)
@@ -172,7 +172,7 @@
         console.log(response);
     })
     .catch(error => {
-        // this.list = productList
+        this.list = productList
       console.log(error);
     });
     }
