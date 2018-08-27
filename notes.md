@@ -70,19 +70,6 @@ TouchEvent
 WheelEvent
 ```
 [WheelEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/WheelEvent)
-```
-兼容获取scrollTop
-
-let t = {};
-// For scrollX
-(((t = document.documentElement) || (t = document.body.parentNode))
-  && typeof t.scrollLeft == 'number' ? t : document.body).scrollLeft
-// For scrollY
-(((t = document.documentElement) || (t = document.body.parentNode))
-  && typeof t.scrollTop == 'number' ? t : document.body).scrollTop
-
-另有：window.pageXOffset 和 window.pageYOffset
-```
 
 ## CSS
 ```
@@ -555,6 +542,7 @@ git revert <commit> # 方式2：替代reset
 git mv [-v] [-f] [-n] [-k] <source> <destination>
 # 部署dist目录下的代码
 git subtree push --prefix dist origin gh-pages
+git config core.ignorecase false # 设置大小写敏感
 ```
 
 ## Sublime
@@ -623,7 +611,7 @@ Ctrl + Shift + N： 创建一个新窗口（该快捷键 和搜狗输入法快�
 Ctrl + W： 关闭标签页，如果没有标签页了，则关闭该窗口
 Ctrl+Shift+W：关闭所有打开文件
 Ctrl + Shift + T： 恢复刚刚关闭的标签。
-Ctrl +Tag：移动标签。
+Ctrl + Tag：移动标签。
 ```
 7. 屏幕
 ```
@@ -634,4 +622,9 @@ Alt + Shift + 8： 进行上下分屏
 Alt + Shift + 5： 进行上下左右分屏（即分为四屏）
 Ctrl + 数字键： 跳转到指定屏
 Ctrl + Shift + 数字键： 将当前屏移动到指定屏
+```
+
+```
+Settings Sync
+gist: ddfc9d24b1dc499ba6607e8c718a710c
 ```
