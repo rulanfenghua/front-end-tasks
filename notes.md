@@ -301,6 +301,33 @@ var p = timeout(1000).then(() => {
 }); 
 //作为构造函数创建实例
 ```
+#### AJAX
+```js
+//jQuery.ajax()请求JSON数据
+function useTestFun() {
+  $.ajax({
+    url: "/Usedefine",//获取数据的URL
+    data:JSON.stringify({
+      'wJsona':"kkk",        
+      'wjsonb':12,
+      'wjsonc':80,
+    }),
+    type: "POST",//HTTP请求方法
+    dataType:'JSON',//获取数据执行方式
+    success:function(data){
+      if(data.status == 'True'){//传入为JSON对象格式
+          alert('连接成功');
+      }
+      else{ 
+          $("#labletip").show();
+      }
+    },
+    error:function(err){
+      alert('连接失败');
+    }
+  });
+}
+```
 
 ## Nodejs
 ```
