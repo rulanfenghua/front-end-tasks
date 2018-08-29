@@ -7,6 +7,7 @@
 - [Nodejs](#nodejs)
   - [Express](#express)
 - [Webpack](#webpack)
+- [tomcat](#tomcat)
 - [Vuejs](#vuejs)
 - [Bash](#bash)
   - [NPM](#npm)
@@ -70,6 +71,10 @@ TouchEvent
 WheelEvent
 ```
 [WheelEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/WheelEvent)
+```
+event.currentTarget
+当事件遍历DOM时，标识事件的当前目标。它总是引用事件处理程序附加到的元素，而不是event.target，event.target标识事件发生的元素。
+```
 
 ## CSS
 ```
@@ -104,6 +109,7 @@ transition-delay
 
 简写：transition: <property><duration><time-function><delay>
 ```
+<!-- ![cubic-bezier](cubic-bezier,example.png) -->
 ```
 resolution
 @media属性：定义设备的分辨率
@@ -125,6 +131,14 @@ flex-grow 属性定义弹性盒子项（flex item）的拉伸因子。
 flex-shrink 属性指定了 flex 元素的收缩规则。
 flex-basis 指定了 flex 元素在主轴方向上的初始大小。
 ```
+```
+CSS align-items属性将所有直接子节点上的align-self值设置为一个组。 align-self属性设置项目在其包含块中的对齐方式。
+```
+[align-items](https://developer.mozilla.org/zh-CN/docs/Web/CSS/align-items)
+```
+CSS justify-content 属性定义了浏览器如何分配顺着父容器主轴的弹性元素之间及其周围的空间。
+```
+[justify-content](https://developer.mozilla.org/zh-CN/docs/Web/CSS/justify-content)
 ```
 CSS函数
 width: calc(100% - 80px);
@@ -186,7 +200,12 @@ body {
     flex: 1;
 }
 ```
-<!-- ![cubic-bezier](cubic-bezier,example.png) -->
+```
+行省略号
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+```
 
 ## ES6
 ```
@@ -398,6 +417,23 @@ new webpack.optimize.RuntimeChunkPlugin({
 }),
 ```
 
+## tomcat
+```
+用户名和密码
+/config/tomcat-users.xml
+
+<role rolename="admin-gui"/>
+<user username="tomcat" password="tomcat" roles="admin-gui"/>
+```
+```
+Tomcat数据库连接池的配置方法
+1.在Tomcat的conf/context.xml中配置
+2.在Tomcat的conf/server.xml中配置
+3.在Tomcat的conf/server.xml中配置虚拟目录时配置 
+4.在Web项目中的META-INF目录下新建一个文件context.xml,写入配置
+```
+[Tomcat数据库连接池的配置](http://www.cnblogs.com/huangwentian/p/7542280.html)
+
 ## Vuejs
 <!-- ![lifecycle](lifecycle.png) -->
 ```
@@ -503,6 +539,12 @@ whoami
 ```bash
 npm list -g --depth 0
 # 查看全局安装的包
+```
+```
+配置文件
+.npmrc
+prefix=${APPDATA}\npm
+registry = http://registry.cnpmjs.org
 ```
 
 ## Git
