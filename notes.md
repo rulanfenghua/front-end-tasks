@@ -9,6 +9,7 @@
 - [Webpack](#webpack)
 - [tomcat](#tomcat)
 - [Vuejs](#vuejs)
+- [微信小程序](#微信小程序)
 - [Bash](#bash)
   - [NPM](#npm)
 - [Git](#git)
@@ -74,6 +75,20 @@ WheelEvent
 ```
 event.currentTarget
 当事件遍历DOM时，标识事件的当前目标。它总是引用事件处理程序附加到的元素，而不是event.target，event.target标识事件发生的元素。
+```
+```
+Array.prototype.map()
+map() 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。
+
+Array.prototype.some()
+some() 方法测试数组中的某些元素是否通过由提供的函数实现的测试。
+```
+```
+Number.prototype.toFixed()
+toFixed() 方法使用定点表示法来格式化一个数。
+
+numObj.toFixed(digits)
+digits：小数点后数字的个数；介于 0 到 20 （包括）之间，实现环境可能支持更大范围。如果忽略该参数，则默认为 0。
 ```
 
 ## CSS
@@ -232,7 +247,7 @@ class SkinnedMesh extends THREE.Mesh {
   }
 }
 ```
-```javascript
+```js
 // 实现斐波那契数列的迭代器
 var fibonacci = {
     [Symbol.iterator]: function*() {
@@ -249,6 +264,18 @@ for (let n of fibonacci) {
     // 当n大于1000时跳出循环
     if (n >= 1000)
         break;
+}
+```
+```
+解构赋值
+// Can be used in parameter position
+
+increment ({ commit }) {
+  commit('increment')
+}
+替代：
+increment (context) {
+  context.commit('increment')
 }
 ```
 #### Promises
@@ -523,6 +550,12 @@ Vue.component('base-checkbox', {
 model 选项可以用来避免冲突
 ```
 
+## 微信小程序
+```
+条件渲染hidden
+<view hidden="{{flag ? true : false}}">hidden</view>
+```
+
 ## Bash
 ```bash
 #!/bin/bash
@@ -539,6 +572,9 @@ whoami
 ```bash
 npm list -g --depth 0
 # 查看全局安装的包
+```
+```
+如果你在 Windows 上通过 minTTY 使用 Git Bash，交互提示符并不工作。你必须通过 winpty vue.cmd create hello-world 启动这个命令。
 ```
 ```
 配置文件
