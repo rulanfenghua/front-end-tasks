@@ -7,7 +7,9 @@
 - [Nodejs](#nodejs)
   - [Express](#express)
 - [Webpack](#webpack)
+- [tomcat](#tomcat)
 - [Vuejs](#vuejs)
+- [微信小程序](#微信小程序)
 - [Bash](#bash)
   - [NPM](#npm)
 - [Git](#git)
@@ -70,6 +72,24 @@ TouchEvent
 WheelEvent
 ```
 [WheelEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/WheelEvent)
+```
+event.currentTarget
+当事件遍历DOM时，标识事件的当前目标。它总是引用事件处理程序附加到的元素，而不是event.target，event.target标识事件发生的元素。
+```
+```
+Array.prototype.map()
+map() 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。
+
+Array.prototype.some()
+some() 方法测试数组中的某些元素是否通过由提供的函数实现的测试。
+```
+```
+Number.prototype.toFixed()
+toFixed() 方法使用定点表示法来格式化一个数。
+
+numObj.toFixed(digits)
+digits：小数点后数字的个数；介于 0 到 20 （包括）之间，实现环境可能支持更大范围。如果忽略该参数，则默认为 0。
+```
 
 ## CSS
 ```
@@ -104,6 +124,7 @@ transition-delay
 
 简写：transition: <property><duration><time-function><delay>
 ```
+<!-- ![cubic-bezier](cubic-bezier,example.png) -->
 ```
 resolution
 @media属性：定义设备的分辨率
@@ -125,6 +146,14 @@ flex-grow 属性定义弹性盒子项（flex item）的拉伸因子。
 flex-shrink 属性指定了 flex 元素的收缩规则。
 flex-basis 指定了 flex 元素在主轴方向上的初始大小。
 ```
+```
+CSS align-items属性将所有直接子节点上的align-self值设置为一个组。 align-self属性设置项目在其包含块中的对齐方式。
+```
+[align-items](https://developer.mozilla.org/zh-CN/docs/Web/CSS/align-items)
+```
+CSS justify-content 属性定义了浏览器如何分配顺着父容器主轴的弹性元素之间及其周围的空间。
+```
+[justify-content](https://developer.mozilla.org/zh-CN/docs/Web/CSS/justify-content)
 ```
 CSS函数
 width: calc(100% - 80px);
@@ -186,7 +215,12 @@ body {
     flex: 1;
 }
 ```
-<!-- ![cubic-bezier](cubic-bezier,example.png) -->
+```
+行省略号
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+```
 
 ## ES6
 ```
@@ -213,7 +247,7 @@ class SkinnedMesh extends THREE.Mesh {
   }
 }
 ```
-```javascript
+```js
 // 实现斐波那契数列的迭代器
 var fibonacci = {
     [Symbol.iterator]: function*() {
@@ -230,6 +264,18 @@ for (let n of fibonacci) {
     // 当n大于1000时跳出循环
     if (n >= 1000)
         break;
+}
+```
+```
+解构赋值
+// Can be used in parameter position
+
+increment ({ commit }) {
+  commit('increment')
+}
+替代：
+increment (context) {
+  context.commit('increment')
 }
 ```
 #### Promises
@@ -398,6 +444,23 @@ new webpack.optimize.RuntimeChunkPlugin({
 }),
 ```
 
+## tomcat
+```
+用户名和密码
+/config/tomcat-users.xml
+
+<role rolename="admin-gui"/>
+<user username="tomcat" password="tomcat" roles="admin-gui"/>
+```
+```
+Tomcat数据库连接池的配置方法
+1.在Tomcat的conf/context.xml中配置
+2.在Tomcat的conf/server.xml中配置
+3.在Tomcat的conf/server.xml中配置虚拟目录时配置 
+4.在Web项目中的META-INF目录下新建一个文件context.xml,写入配置
+```
+[Tomcat数据库连接池的配置](http://www.cnblogs.com/huangwentian/p/7542280.html)
+
 ## Vuejs
 <!-- ![lifecycle](lifecycle.png) -->
 ```
@@ -487,6 +550,12 @@ Vue.component('base-checkbox', {
 model 选项可以用来避免冲突
 ```
 
+## 微信小程序
+```
+条件渲染hidden
+<view hidden="{{flag ? true : false}}">hidden</view>
+```
+
 ## Bash
 ```bash
 #!/bin/bash
@@ -503,6 +572,15 @@ whoami
 ```bash
 npm list -g --depth 0
 # 查看全局安装的包
+```
+```
+如果你在 Windows 上通过 minTTY 使用 Git Bash，交互提示符并不工作。你必须通过 winpty vue.cmd create hello-world 启动这个命令。
+```
+```
+配置文件
+.npmrc
+prefix=${APPDATA}\npm
+registry = http://registry.cnpmjs.org
 ```
 
 ## Git
