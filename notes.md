@@ -90,6 +90,14 @@ toFixed() 方法使用定点表示法来格式化一个数。
 numObj.toFixed(digits)
 digits：小数点后数字的个数；介于 0 到 20 （包括）之间，实现环境可能支持更大范围。如果忽略该参数，则默认为 0。
 ```
+```
+localStorage
+localStorage 与 sessionStorage 一样，都遵循同源策略，但是它是持续存在的。
+```
+```
+Object.keys()
+Object.keys() 方法会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for...in 循环遍历该对象时返回的顺序一致 。
+```
 
 ## CSS
 ```
@@ -166,6 +174,11 @@ width: calc(100% - 80px);
 box-shadow 以由逗号分隔的列表来描述一个或多个阴影效果。
 box-shadow: [inset? && [ <offset-x> <offset-y> <blur-radius>? <spread-radius>? <color>? ]]
 ```
+```
+CSS伪类
+:link, :visited, :hover, :active
+```
+[CSS伪类](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:hover)
 #### 写法
 ```
 Sticky Footer
@@ -580,7 +593,10 @@ npm list -g --depth 0
 配置文件
 .npmrc
 prefix=${APPDATA}\npm
-registry = http://registry.cnpmjs.org
+registry = https://registry.npm.taobao.org
+```
+```
+npm cache clean --force
 ```
 
 ## Git
@@ -677,6 +693,7 @@ Ctrl+Y：恢复撤销
 Ctrl+J：合并行（已选择需要合并的多行时）
 Ctrl + [： 选中内容向左缩进
 Ctrl + ]： 选中内容向右缩进
+Ctrl + KU
 ```
 3. 选择
 ```
