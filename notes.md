@@ -206,7 +206,7 @@ Sticky Footer
 }
 
 方式3（flex）：
-body {
+.wrapper {
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -580,7 +580,7 @@ npm list -g --depth 0
 配置文件
 .npmrc
 prefix=${APPDATA}\npm
-registry = http://registry.cnpmjs.org
+registry = https://registry.npm.taobao.org
 ```
 
 ## Git
