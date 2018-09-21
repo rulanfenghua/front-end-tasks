@@ -2,6 +2,7 @@
 - [JS](#js)
 - [CSS](#css)
   - [写法](#写法)
+- [ECharts](#echarts)
 - [ES6](#es6)
 - [jQuery](#jquery)
 - [Nodejs](#nodejs)
@@ -233,6 +234,12 @@ body {
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
+```
+
+## ECharts
+```
+pie/label/formatter
+{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}
 ```
 
 ## ES6
