@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../plugins/jquery-3.3.1.js"></script>
+	<script src="../plugins/html2canvas.js"></script>
+</head>
+<body>
+	<div class="box">
+　　<p>这是生成图片的box，内容不限</p>　
+   //跨域图片（oss地址）
+　　<img id="ossImg" src="https://devimg.xiezixiansheng.com/users/0/1/photo/20160708035328.jpeg">
+<button id="button">截图</button>
+</div>
+</body>
+<script type="text/javascript">
+$('#button').click(function() {
+    var c_width = $('.box').outerWidth(); //如果box设置了padding，需要获取outerWidth和outerHeight来赋给canvas；
+    var c_height = $('.box').outerHeight();
+
+    var canvas = document.createElement("canvas");
+    var context = canvas.getContext("2d");
+
+		//以下代码是获取根据屏幕分辨率，来设置canvas的宽高以获得高清图片
+    // 屏幕的设备像素比
+    var devicePixelRatio = window.devicePixelRatio || 2;
+
+    // 浏览器在渲染canvas之前存储画布信息的像素比
+    var backingStoreRatio = context.webkitBackingStorePixelRatio ||
+        context.mozBackingStorePixelRatio ||
+        context.msBackingStorePixelRatio ||
+        context.oBackingStorePixelRatio ||
+        context.backingStorePixelRatio || 1;
+
+    // canvas的实际渲染倍率
+    var ratio = devicePixelRatio / backingStoreRatio;
+
+    canvas.width = c_width * ratio;
+    canvas.height = c_height * ratio;
+    canvas.style.width = c_width + "px";
+    canvas.style.height = c_height + "px";
+
+    var transTop = $(document).scrollTop() - $('.box').offset().top; //获取div垂直方向的位置
+
+    context.scale(ratio, ratio);
+    context.translate((c_width - $(window).width()) / 2, transTop) //canvas的位置要保证与div位置相同。
+
+		//高清图设置完成
+		//解决跨域，将跨域图片路径转为base64格式
+    var img = new Image();　　　　
+    var canvas2 = document.createElement('canvas');　　　　
+    var ctx = canvas2.getContext('2d');　　　　
+    img.crossOrigin = 'Anonymous';　　　　
+    img.src = $('#ossImg').attr('src');　　　　
+    img.onload = function() {
+        console.log(2)　　　　 canvas2.height = img.height;　　　　
+        canvas2.width = img.width;　　　　
+        ctx.drawImage(img, 0, 0);　　　　
+        var dataURL = canvas2.toDataURL('image/png');　　　　　　
+        $('#ossImg').attr('src', dataURL);　　　　
+        canvas2 = null;
+        　　　　
+				//重新给img赋值成功后，执行截图方法
+        getCard()
+    }
+
+    function getCard() {　　　　　　
+        html2canvas($(".box"), { // html2canvas的代码过旧需要修改
+            allowTaint: true,
+            useCORS: true,
+            canvas: canvas,
+            onrendered: function(canvas) {
+                dataURL = canvas.toDataURL("image/png");
+                var img = new Image();
+                img.src = dataURL;
+                img.className = 'cardImg';
+                img.onload = function() {
+                    $(".card").append(img);
+                }
+            },
+            width: c_width,
+            height: c_height
+        })　　　
+    }
+})
+</script>
+</html>

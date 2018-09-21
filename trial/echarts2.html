@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../plugins/echarts.js"></script>
+</head>
+<body>
+	<div id="main" style="width: 600px;height: 400px;border: 1px solid green"></div>
+</body>
+
+<script type="text/javascript">
+	var myChart = echarts.init(document.querySelector('#main'))
+
+	var colors = ['#5793f3', '#d14a61', '#675bba']
+	myChart.setOption({
+		color: colors,
+
+		tooltip: {
+			trigger: 'axis',
+			axisPointer: {
+				type: 'cross'
+			}
+		},
+		grid: {
+			right: '20%'
+		},
+		toolbox: {
+			feature: {
+				dataView: {show: true, readOnly: false},
+        restore: {show: true},
+        saveAsImage: {show: true}
+			}
+		},
+		ledend: {
+			data: ['蒸发量','降水量','平均温度']
+		},
+		xAxis: [
+			{
+				type: 'category',
+				axisTick: {
+					alignWithLabel: true
+				},
+				data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+			}
+		],
+		yAxis: [
+			{
+				type: 'value',
+				name: '蒸发量',
+				min: 0,
+				max: 250,
+				position: 'right',
+				axisLine: {
+					lineStyle: {
+						color: colors[0]
+					}
+				},
+				axisLabel: {
+					formatter: '{value} ml'
+				}
+			}
+		]
+	})
+</script>
+</html>
