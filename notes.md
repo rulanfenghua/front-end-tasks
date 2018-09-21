@@ -220,7 +220,7 @@ Sticky Footer
 }
 
 方式3（flex）：
-body {
+.wrapper {
     min-height: 100%;
     display: flex;
     flex-direction: column;
