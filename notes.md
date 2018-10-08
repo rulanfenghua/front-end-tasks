@@ -2,8 +2,8 @@
 - [JS](#js)
 - [CSS](#css)
   - [写法](#写法)
-- [ECharts](#echarts)
 - [ES6](#es6)
+- [ECharts](#echarts)
 - [jQuery](#jquery)
 - [Nodejs](#nodejs)
   - [Express](#express)
@@ -98,6 +98,26 @@ localStorage 与 sessionStorage 一样，都遵循同源策略，但是它是持
 ```
 Object.keys()
 Object.keys() 方法会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for...in 循环遍历该对象时返回的顺序一致 。
+```
+```js
+// 伪数组
+
+// Determine if o is an array-like object.
+// Strings and functions have numeric length properties, but are
+// excluded by the typeof test. In client-side JavaScript, DOM text
+// nodes have a numeric length property, and may need to be excluded
+// with an additional o.nodeType != 3 test.
+function isArrayLike(o) {
+    if (o && // o is not null, undefined, etc.
+        typeof o === 'object' && // o is an object
+        isFinite(o.length) && // o.length is a finite number
+        o.length >= 0 && // o.length is non-negative
+        o.length === Math.floor(o.length) && // o.length is an integer
+        o.length < 4294967296) // o.length < 2^32
+        return true; // Then o is array-like
+    else
+        return false; // Otherwise it is not
+}
 ```
 
 ## CSS
@@ -236,19 +256,6 @@ overflow: hidden;
 text-overflow: ellipsis;
 ```
 
-## ECharts
-```
-label.formatter 配置项
-
-折线（区域）图、柱状（条形）图、K线图 : {a}（系列名称），{b}（类目值），{c}（数值）, {d}（无）
-
-散点图（气泡）图 : {a}（系列名称），{b}（数据名称），{c}（数值数组）, {d}（无）
-
-地图 : {a}（系列名称），{b}（区域名称），{c}（合并数值）, {d}（无）
-
-饼图、仪表盘、漏斗图: {a}（系列名称），{b}（数据项名称），{c}（数值）, {d}（百分比）
-```
-
 ## ES6
 ```
 ES6的类只是一个语法糖。
@@ -306,7 +313,7 @@ increment (context) {
 }
 ```
 #### Promises
-```
+```js
 import() 会返回一个 promise，它可以和 async 函数一起使用。
 一个 Promise 就是一个代表了异步操作最终完成或者失败的对象。
 function timeout(duration = 0) {
@@ -322,6 +329,27 @@ var p = timeout(1000).then(() => {
 }).catch(err => {
     return Promise.all([timeout(100), timeout(200)]);
 })
+```
+```js
+在旧式回调API中创建Promise
+我们可以用promise构造器来包裹它。
+
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+wait(10000).then(() => saySomething("10 seconds")).catch(failureCallback);
+```
+
+## ECharts
+```
+label.formatter 配置项
+
+折线（区域）图、柱状（条形）图、K线图 : {a}（系列名称），{b}（类目值），{c}（数值）, {d}（无）
+
+散点图（气泡）图 : {a}（系列名称），{b}（数据名称），{c}（数值数组）, {d}（无）
+
+地图 : {a}（系列名称），{b}（区域名称），{c}（合并数值）, {d}（无）
+
+饼图、仪表盘、漏斗图: {a}（系列名称），{b}（数据项名称），{c}（数值）, {d}（百分比）
 ```
 
 ## jQuery
