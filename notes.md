@@ -11,6 +11,7 @@
 - [tomcat](#tomcat)
 - [Vuejs](#vuejs)
 - [微信小程序](#微信小程序)
+- [PS](#ps)
 - [Bash](#bash)
   - [NPM](#npm)
 - [Git](#git)
@@ -609,6 +610,22 @@ model 选项可以用来避免冲突
 ```
 条件渲染hidden
 <view hidden="{{flag ? true : false}}">hidden</view>
+```
+
+## PS
+```
+使用前景或背景色填充
+
+D, X, Alt+ Delete 填充白色
+```
+#### 选区
+```
+选区运算
+
+新建
+添加 Shift
+减去 Alt  
+保留相交 Shift+ Alt
 ```
 
 ## Bash
