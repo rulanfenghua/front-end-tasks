@@ -627,6 +627,15 @@ D, X, Alt+ Delete 填充白色
 减去 Alt  
 保留相交 Shift+ Alt
 ```
+```
+撤销选区 Ctrl+ D
+```
+#### 图层
+```
+通过Ctrl键和移动工具V选择图层
+
+Ctrl+ Shift点击减去选择
+```
 
 ## Bash
 ```bash
