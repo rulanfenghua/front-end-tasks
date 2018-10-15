@@ -730,6 +730,7 @@ git checkout -- <filename> # 回滚工作区
 ```bash
 git remote [-v] 查看远程仓库信息
 git remote add <repository> <url> # repository为：origin或者upstream
+git remote remove <repository>
 git push [-u] <repository> <branch> # 推送master分支
 git push <repository> --delete <branch>
 git push <repository> :<branch>

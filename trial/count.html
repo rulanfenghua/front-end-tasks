@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+
+<script type="text/javascript">
+	var countWrapper = function() {
+		var count = 0
+		for (var i= 0; i<10; i++) {
+			count = countNumber(i, count)
+			// function countNumber(index) {
+			// 	count++
+			// }
+			console.log(count)
+		}
+	}
+
+	var countNumber = function(index, count) {
+		return ++count
+	}
+
+	countWrapper()
+</script>
+
+</html>
