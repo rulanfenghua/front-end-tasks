@@ -3,6 +3,7 @@
 - [CSS](#css)
   - [写法](#写法)
 - [ES6](#es6)
+- [ECharts](#echarts)
 - [jQuery](#jquery)
 - [Nodejs](#nodejs)
   - [Express](#express)
@@ -10,6 +11,7 @@
 - [tomcat](#tomcat)
 - [Vuejs](#vuejs)
 - [微信小程序](#微信小程序)
+- [PS](#ps)
 - [Bash](#bash)
   - [NPM](#npm)
 - [Git](#git)
@@ -98,6 +100,35 @@ localStorage 与 sessionStorage 一样，都遵循同源策略，但是它是持
 Object.keys()
 Object.keys() 方法会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for...in 循环遍历该对象时返回的顺序一致 。
 ```
+```js
+// 伪数组
+
+// Determine if o is an array-like object.
+// Strings and functions have numeric length properties, but are
+// excluded by the typeof test. In client-side JavaScript, DOM text
+// nodes have a numeric length property, and may need to be excluded
+// with an additional o.nodeType != 3 test.
+function isArrayLike(o) {
+    if (o && // o is not null, undefined, etc.
+        typeof o === 'object' && // o is an object
+        isFinite(o.length) && // o.length is a finite number
+        o.length >= 0 && // o.length is non-negative
+        o.length === Math.floor(o.length) && // o.length is an integer
+        o.length < 4294967296) // o.length < 2^32
+        return true; // Then o is array-like
+    else
+        return false; // Otherwise it is not
+}
+```
+```
+设置element样式
+
+HTMLElement.style
+HTMLElement.style 属性返回一个 CSSStyleDeclaration 对象，表示元素的 内联style 属性（attribute）
+
+Element.setAttribute()
+```
+[HTMLElement.style](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/style)
 
 ## CSS
 ```
@@ -292,7 +323,7 @@ increment (context) {
 }
 ```
 #### Promises
-```
+```js
 import() 会返回一个 promise，它可以和 async 函数一起使用。
 一个 Promise 就是一个代表了异步操作最终完成或者失败的对象。
 function timeout(duration = 0) {
@@ -308,6 +339,27 @@ var p = timeout(1000).then(() => {
 }).catch(err => {
     return Promise.all([timeout(100), timeout(200)]);
 })
+```
+```js
+在旧式回调API中创建Promise
+我们可以用promise构造器来包裹它。
+
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+wait(10000).then(() => saySomething("10 seconds")).catch(failureCallback);
+```
+
+## ECharts
+```
+label.formatter 配置项
+
+折线（区域）图、柱状（条形）图、K线图 : {a}（系列名称），{b}（类目值），{c}（数值）, {d}（无）
+
+散点图（气泡）图 : {a}（系列名称），{b}（数据名称），{c}（数值数组）, {d}（无）
+
+地图 : {a}（系列名称），{b}（区域名称），{c}（合并数值）, {d}（无）
+
+饼图、仪表盘、漏斗图: {a}（系列名称），{b}（数据项名称），{c}（数值）, {d}（百分比）
 ```
 
 ## jQuery
@@ -562,11 +614,69 @@ Vue.component('base-checkbox', {
 })
 model 选项可以用来避免冲突
 ```
+#### 自定义指令
+```
+钩子函数
+
+一个指令定义对象可以提供如下几个钩子函数 (均为可选)：
+
+bind：只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。
+
+inserted：被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)。
+
+update：所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新 (详细的钩子函数参数见下)。
+
+componentUpdated：指令所在组件的 VNode 及其子 VNode 全部更新后调用。
+
+unbind：只调用一次，指令与元素解绑时调用。
+```
+```
+钩子函数参数
+
+指令钩子函数会被传入以下参数：
+
+el：指令所绑定的元素，可以用来直接操作 DOM 。
+binding：一个对象，包含以下属性：
+
+name：指令名，不包括 v- 前缀。
+value：指令的绑定值，例如：v-my-directive="1 + 1" 中，绑定值为 2。
+oldValue：指令绑定的前一个值，仅在 update 和 componentUpdated 钩子中可用。无论值是否改变都可用。
+expression：字符串形式的指令表达式。例如 v-my-directive="1 + 1" 中，表达式为 "1 + 1"。
+arg：传给指令的参数，可选。例如 v-my-directive:foo 中，参数为 "foo"。
+modifiers：一个包含修饰符的对象。例如：v-my-directive.foo.bar 中，修饰符对象为 { foo: true, bar: true }。
+vnode：Vue 编译生成的虚拟节点。移步 VNode API 来了解更多详情。
+oldVnode：上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用。
+```
 
 ## 微信小程序
 ```
 条件渲染hidden
 <view hidden="{{flag ? true : false}}">hidden</view>
+```
+
+## PS
+```
+使用前景或背景色填充
+
+D, X, Alt+ Delete 填充白色
+```
+#### 选区
+```
+选区运算
+
+新建
+添加 Shift
+减去 Alt  
+保留相交 Shift+ Alt
+```
+```
+撤销选区 Ctrl+ D
+```
+#### 图层
+```
+通过Ctrl键和移动工具V选择图层
+
+Ctrl+ Shift点击减去选择
 ```
 
 ## Bash
@@ -620,6 +730,7 @@ git checkout -- <filename> # 回滚工作区
 ```bash
 git remote [-v] 查看远程仓库信息
 git remote add <repository> <url> # repository为：origin或者upstream
+git remote remove <repository>
 git push [-u] <repository> <branch> # 推送master分支
 git push <repository> --delete <branch>
 git push <repository> :<branch>
