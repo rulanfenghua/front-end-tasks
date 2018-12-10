@@ -654,6 +654,15 @@ oldVnode：上一个虚拟节点，仅在 update 和 componentUpdated 钩子中�
 <view hidden="{{flag ? true : false}}">hidden</view>
 ```
 
+## cocos creator
+```
+convertToNodeSpaceAR
+将一个点转换到节点 (局部) 空间坐标系，这个坐标系以锚点为原点。 // 用于区分cocos2d-x
+
+convertToNodeSpaceAR
+将一个点转换到节点 (局部) 空间坐标系，这个坐标系以锚点为原点。 // 用于区分cocos2d-x
+```
+
 ## PS
 ```
 使用前景或背景色填充
@@ -756,7 +765,7 @@ git branch -d <branch>
 git remote prune <repository> # 清理本地分支
 git gc # 清理本地git对象
 ```
-6. 标签
+6. 标签和储藏
 ```bash
 git tag [-a <tagname>] [-m <message>] [<commit id>]
 git tag # 查看标签
@@ -765,16 +774,26 @@ git push <repository> <tagname> # 推送一个本地标签
 git push <repository> --tags # 推送全部未推送过的本地标签
 git tag -d <tagname> # 删除一个本地标签
 git push <repository> :refs/tags/<tagname> # 删除一个远程标签
+
+git stash # 储藏变更
+git stash list # 查看储藏
+git stash apply [--index] [stash@{2}] # 应用储藏
+# --index 重新应用被暂存的变更
+git stash drop
+git stash clean
+# 清除储藏
 ```
 7. 版本回退和其它
 ```bash
 git push -f 
 # 方式1：强制推送
 git revert <commit> # 方式2：替代reset
+
 git mv [-v] [-f] [-n] [-k] <source> <destination>
 # 部署dist目录下的代码
 git subtree push --prefix dist origin gh-pages
 git config core.ignorecase false # 设置大小写敏感
+--allow-unrelated-histories # 远程冲突命令
 ```
 
 ## Sublime
