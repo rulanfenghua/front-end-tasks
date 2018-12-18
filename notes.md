@@ -780,7 +780,7 @@ git stash list # 查看储藏
 git stash apply [--index] [stash@{2}] # 应用储藏
 # --index 重新应用被暂存的变更
 git stash drop
-git stash clean
+git stash clear
 # 清除储藏
 ```
 7. 版本回退和其它
