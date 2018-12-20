@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conversion>
+  <applied-converters>
+    <converter id="Play2ModuleTypeConverterProvider" />
+    <converter id="android-module-to-java-module" />
+    <converter id="android-proguard-options" />
+    <converter id="android-sdk-library" />
+    <converter id="build-jar-configurations-to-artifacts" />
+    <converter id="detach-cdi-facet-from-module" />
+    <converter id="detach-jsf-facet-from-module" />
+    <converter id="google-app-engine-facet" />
+    <converter id="groovy-modules-to-facets" />
+    <converter id="groovy-script-run-configurations" />
+    <converter id="gwt-packaging" />
+    <converter id="javaee-module-to-facets" />
+    <converter id="javaee-packaging-to-artifacts" />
+    <converter id="js-debug-configuration-converter" />
+    <converter id="js-predefined-libraries-merged" />
+    <converter id="junit-to-android-junit-configurations" />
+    <converter id="scala-facets-to-sdks" />
+  </applied-converters>
+  <project-files>
+    <file path="D:\workspace-idea\idea\.idea\misc.xml" timestamp="1543990991360" />
+    <file path="D:\workspace-idea\idea\.idea\modules.xml" timestamp="1543991049311" />
+    <file path="D:\workspace-idea\idea\.idea\project-template.xml" timestamp="1543990989795" />
+    <file path="D:\workspace-idea\idea\.idea\vcs.xml" timestamp="1544267585425" />
+    <file path="D:\workspace-idea\idea\.idea\workspace.xml" timestamp="1544921006734" />
+    <file path="D:\workspace-idea\idea\idea.iml" timestamp="1543990989803" />
+  </project-files>
+</conversion>
+

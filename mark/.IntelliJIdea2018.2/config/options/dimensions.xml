@@ -1,0 +1,22 @@
+<application>
+  <component name="DimensionService">
+    <location key="FileChooserDialogImpl.0.0.1920.1080" x="743" y="191" />
+    <location key="new project wizard.0.0.1920.1080" x="596" y="36" />
+    <location key="WELCOME_SCREEN.0.0.1920.1080" x="963" y="437" />
+    <location key="com.intellij.ide.util.TipDialog.0.0.1920.1080" x="650" y="324" />
+    <location key="SettingsEditor.0.0.1920.1080" x="446" y="163" />
+    <location key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2.0.0.1920.1080" x="504" y="245" />
+    <location key="svn.repositoryBrowser.0.0.1920.1080" x="790" y="309" />
+    <location key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate.0.0.1920.1080" x="717" y="414" />
+    <location key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD.0.0.1920.1080" x="658" y="412" />
+    <size key="GridCell.Tab.0.left.0.0.1920.1080" width="1876" height="340" />
+    <size key="GridCell.Tab.0.center.0.0.1920.1080" width="1876" height="340" />
+    <size key="GridCell.Tab.0.right.0.0.1920.1080" width="1876" height="340" />
+    <size key="GridCell.Tab.0.bottom.0.0.1920.1080" width="1876" height="340" />
+    <size key="SettingsEditor.0.0.1920.1080" width="1174" height="714" />
+    <size key="GridCell.Tab.1.left.0.0.1920.1080" width="1876" height="340" />
+    <size key="GridCell.Tab.1.center.0.0.1920.1080" width="1876" height="340" />
+    <size key="GridCell.Tab.1.right.0.0.1920.1080" width="1876" height="340" />
+    <size key="GridCell.Tab.1.bottom.0.0.1920.1080" width="1876" height="340" />
+  </component>
+</application>

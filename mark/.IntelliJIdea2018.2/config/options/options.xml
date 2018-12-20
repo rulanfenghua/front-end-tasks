@@ -1,0 +1,21 @@
+<application>
+  <component name="PropertiesComponent">
+    <property name="Darcula.savedEditorTheme" value="_@user_Darcula" />
+    <property name="Default.savedEditorTheme" value="_@user_Default" />
+    <property name="FileTemplates.SelectedTemplate" value="HTML File" />
+    <property name="IJ_BASE_PACKAGE" value="rulanfenghua" />
+    <property name="KEYMAP" value="complete" />
+    <property name="SearchEveryWhereHistory" value="This" />
+    <property name="SettingsSearchHistory" value="templa&#10;temple&#10;tem&#10;System.out" />
+    <property name="defaultJdkConfigured" value="true" />
+    <property name="file.chooser.recent.files" value="F:/RuoYi&#10;D:/workspace-idea&#10;C:/Program Files/Java/jdk1.8.0_181" />
+    <property name="file.gist.reindex.count" value="255" />
+    <property name="installed.kotlin.plugin.version" value="1.2.51-release-IJ2018.2-1" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="lastTip" value="9" />
+    <property name="learn.toolwindow.button.info.shown" value="true" />
+    <property name="project.wizard.group" value="JAVA_MODULE" />
+    <property name="project.wizard.template" value="Java" />
+    <property name="ts.lib.d.ts.version" value="3.0.1" />
+  </component>
+</application>
