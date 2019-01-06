@@ -264,6 +264,12 @@ Sticky Footer
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
+
+多行省略号
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 3;
+overflow: hidden;
 ```
 
 ## ES6
