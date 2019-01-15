@@ -129,6 +129,10 @@ HTMLElement.style 属性返回一个 CSSStyleDeclaration 对象，表示元素�
 Element.setAttribute()
 ```
 [HTMLElement.style](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/style)
+```
+var element = document.documentElement;
+document.documentElement 是一个会返回文档对象（document）的根元素的只读属性。
+```
 
 ## CSS
 ```
