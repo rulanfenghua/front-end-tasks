@@ -214,6 +214,20 @@ CSS伪类
 :link, :visited, :hover, :active
 ```
 [CSS伪类](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:hover)
+```
+background 是一种 CSS 简写属性
+
+可以在一次声明中定义一个或多个属性：background-clip、background-color、background-image、background-origin、background-position、background-repeat、background-size，和 background-attachment。
+
+其中，<position>和<bg-size>要以/分开
+<bg-size>横向在前，纵向在后
+
+单张图片的背景大小可以使用以下三种方法中的一种来规定：
+
+使用关键词 contain（嵌入）
+使用关键词 cover（覆盖）
+设定宽度和高度值
+```
 #### 写法
 ```
 Sticky Footer
