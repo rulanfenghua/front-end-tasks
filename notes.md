@@ -899,8 +899,10 @@ Alt + Shift + 5： 进行上下左右分屏（即分为四屏）
 Ctrl + 数字键： 跳转到指定屏
 Ctrl + Shift + 数字键： 将当前屏移动到指定屏
 ```
-
 ```
 Settings Sync
 gist: ddfc9d24b1dc499ba6607e8c718a710c
+```
+```
+XFLXR-QMA88-IBBET
 ```
