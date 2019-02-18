@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>fileinput</title>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+	<link href="https://cdn.bootcss.com/bootstrap-fileinput/4.5.2/css/fileinput.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.5.2/js/fileinput.min.js"></script>
+</head>
+<body>
+    <label class="control-label">Select File</label>
+	<input id="input-b5" name="input-b5[]" type="file" multiple>
+	<script>
+	$(document).on('ready', function() {
+	    $("#input-b5").fileinput({showCaption: false, dropZoneEnabled: false});
+	});
+</script>
+</body>
+</html>
