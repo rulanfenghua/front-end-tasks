@@ -847,7 +847,8 @@ Ctrl+Y：恢复撤销
 Ctrl+J：合并行（已选择需要合并的多行时）
 Ctrl + [： 选中内容向左缩进
 Ctrl + ]： 选中内容向右缩进
-Ctrl + KU
+Ctrl + KU : 切换大写
+Ctrl + KL : 切换小写
 ```
 3. 选择
 ```
@@ -855,7 +856,6 @@ Alt+F3：选中关键词后，选中所有相同的词。可以配合Ctrl+D使�
 Ctrl + D Ctrl + K Ctrl + U：Ctrl + D选择当前光标所在的词并高亮该词所有出现的位置，再次Ctrl + D，会选择该词出现的下一个位置。在多重选词的过程中，Ctrl + K会将当前选中的词进行跳过。在多重选词的过程中，Ctrl + U进行回退
 Ctrl+L ：选择光标所在整行
 Ctrl+X：删除光标所在行
-Ctrl + J： 把当前选中区域合并为一行
 Ctrl+Shift+M：选中当前括号内容，重复可选着括号本身
 ```
 4. 查找
@@ -906,3 +906,37 @@ gist: ddfc9d24b1dc499ba6607e8c718a710c
 ```
 XFLXR-QMA88-IBBET
 ```
+```
+```
+@ts-ignore 忽略下行
+@ts-nocheck 忽略下文
+```
+```
+下面的示例演示如何使用反射在运行时检索给定程序实体的属性信息。
+using System;
+using System.Reflection;
+
+class Test
+{
+    static void ShowHelp(MemberInfo member) {
+        HelpAttribute a = Attribute.GetCustomAttribute(member,
+            typeof(HelpAttribute)) as HelpAttribute;
+        if (a == null) {
+            Console.WriteLine("No help for {0}", member);
+        }
+        else {
+            Console.WriteLine("Help for {0}:", member);
+            Console.WriteLine("  Url={0}, Topic={1}", a.Url, a.Topic);
+        }
+    }
+
+    static void Main() {
+        ShowHelp(typeof(Widget));
+        ShowHelp(typeof(Widget).GetMethod("Display"));
+    }
+}
+通过反射请求获得特定特性时，将调用特性类的构造函数（由程序源提供信息），并返回生成的特性实例。 如果是通过属性提供其他信息，那么在特性实例返回前，这些属性会设置为给定值。
+```
+
+链接：https://pan.baidu.com/s/1VjpMCqFst_687VlseNeuCw 
+提取码：dhsm 
