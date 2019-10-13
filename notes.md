@@ -907,7 +907,6 @@ gist: ddfc9d24b1dc499ba6607e8c718a710c
 XFLXR-QMA88-IBBET
 ```
 ```
-```
 @ts-ignore 忽略下行
 @ts-nocheck 忽略下文
 ```
