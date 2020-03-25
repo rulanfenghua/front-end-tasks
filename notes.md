@@ -683,7 +683,7 @@ oldVnode：上一个虚拟节点，仅在 update 和 componentUpdated 钩子中�
 convertToNodeSpaceAR
 将一个点转换到节点 (局部) 空间坐标系，这个坐标系以锚点为原点。 // 用于区分cocos2d-x
 
-convertToNodeSpaceAR
+convertToWorldSpaceAR
 将一个点转换到节点 (局部) 空间坐标系，这个坐标系以锚点为原点。 // 用于区分cocos2d-x
 ```
 
@@ -818,6 +818,7 @@ git mv [-v] [-f] [-n] [-k] <source> <destination>
 git subtree push --prefix dist origin gh-pages
 git config core.ignorecase false # 设置大小写敏感
 --allow-unrelated-histories # 远程冲突命令
+ssh-keygen -t rsa -C "rulanfenghua@163.com" # 生成SSH
 ```
 
 ## Sublime
