@@ -819,6 +819,15 @@ git subtree push --prefix dist origin gh-pages
 git config core.ignorecase false # 设置大小写敏感
 --allow-unrelated-histories # 远程冲突命令
 ssh-keygen -t rsa -C "rulanfenghua@163.com" # 生成SSH
+# 添加SSH私钥到ssh-agent
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa_github
+```
+8.忽略已跟踪文件的变更
+```
+git rm --cached package-lock.json
+git add package-lock.json
+git commit -m "ignore package-lock.json"
 ```
 
 ## Sublime
@@ -942,3 +951,8 @@ class Test
 提取码：dhsm 
 
 http://www.photophoto.cn/tupian/jinseziyangshi.html
+
+`/[\u4e00-\u9fa5]/`是错的，不要用二十年前的正则表达式了
+`/\p{Unified_Ideograph}/u`是正确的，不需要维护，匹配所有汉字。这里`\p`是 Unicode 属性转义正则表达式。
+`/\p{Ideographic}/u` 和 `/\p{Script=Han}/u` 匹配了除了汉字以外的其他一些字符，在「汉字匹配正则表达式」这个需求下，是错的。
+目前 Chrome 和 Safari 支持 Unicode 属性转义正则表达式。对其他环境，使用 7.7 版本的 `@babel/env` 就可以自动根据浏览器规定打开支持。
