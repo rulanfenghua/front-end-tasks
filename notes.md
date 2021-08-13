@@ -16,6 +16,7 @@
   - [NPM](#npm)
 - [Git](#git)
 - [Sublime](#sublime)
+- [Axios](#axios)
 
 ## HTML
 ```
@@ -345,6 +346,20 @@ increment ({ commit }) {
 increment (context) {
   context.commit('increment')
 }
+```
+```
+这里使用了 ES6 计算属性名称的语法更新给定输入名称对应的 state 值：
+
+例如：
+
+this.setState({
+  [name]: value
+});
+等同 ES5:
+
+var partialState = {};
+partialState[name] = value;
+this.setState(partialState);
 ```
 #### Promises
 ```js
@@ -947,10 +962,36 @@ class Test
 通过反射请求获得特定特性时，将调用特性类的构造函数（由程序源提供信息），并返回生成的特性实例。 如果是通过属性提供其他信息，那么在特性实例返回前，这些属性会设置为给定值。
 ```
 
-链接：https://pan.baidu.com/s/1VjpMCqFst_687VlseNeuCw 
-提取码：dhsm 
+## Axios
+```
+使用 application/x-www-form-urlencoded format
+默认情况下，axios将JavaScript对象序列化为JSON。 要以application / x-www-form-urlencoded格式发送数据，您可以使用以下选项之一。
 
-http://www.photophoto.cn/tupian/jinseziyangshi.html
+浏览器
+在浏览器中，您可以使用URLSearchParams API，如下所示：
+
+const params = new URLSearchParams();
+params.append('param1', 'value1');
+params.append('param2', 'value2');
+axios.post('/foo', params);
+请注意，所有浏览器都不支持URLSearchParams（请参阅caniuse.com），但可以使用polyfill（确保填充全局环境）。
+
+或者，您可以使用qs库编码数据：
+
+const qs = require('qs');
+axios.post('/foo', qs.stringify({ 'bar': 123 }));
+或者以另一种方式（ES6），
+
+import qs from 'qs';
+const data = { 'bar': 123 };
+const options = {
+  method: 'POST',
+  headers: { 'content-type': 'application/x-www-form-urlencoded' },
+  data: qs.stringify(data),
+  url,
+};
+axios(options);
+```
 
 `/[\u4e00-\u9fa5]/`是错的，不要用二十年前的正则表达式了
 `/\p{Unified_Ideograph}/u`是正确的，不需要维护，匹配所有汉字。这里`\p`是 Unicode 属性转义正则表达式。
