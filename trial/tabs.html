@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		<style type="text/css">
+			.container {
+				height: 100vh;
+			}
+			.active {
+				background-color: red;
+			}
+			.content {
+				height: 50%;
+			}
+			
+			#tabs li {
+				cursor: pointer;
+				display: inline-block;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="leftside">
+				<ul id="tabs">
+					<li class="active">1</li>
+					<li>2</li>
+				</ul>
+			</div>
+			<div class="content" style="background-color: red; display: none"></div>
+			<div class="content" style="background-color: green; display: none"></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../plugins/jquery-3.3.1.js"></script>
+	<script>
+	$(document).ready(function () {
+		$('.content:first').show()
+
+		$('#tabs li').click(function (e) {
+			console.log(e)
+			var tabContent = $('.content')
+			var index = $(this).index()
+
+			if ($(this).hasClass('active')) {
+				return
+			}
+			else {
+				$('#tabs li').removeClass('active')
+				$(this).addClass('active')
+
+				tabContent.hide().eq(index).fadeIn()
+			}
+		})
+    })
+	</script>
+</html>
