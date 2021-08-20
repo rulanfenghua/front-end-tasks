@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		
+	</body>
+	<script>
+		var array = new Uint32Array(1);
+		window.crypto.getRandomValues(array);
+
+		console.log("Your lucky numbers:");
+		for (var i = 0; i < array.length; i++) {
+			console.log(array[i]);
+		}
+	</script>
+</html>

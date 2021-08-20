@@ -230,8 +230,8 @@ background 是一种 CSS 简写属性
 设定宽度和高度值
 ```
 #### 写法
+###### Sticky Footer
 ```
-Sticky Footer
 页面结构：
 <div class="wrapper">
     <div class="content">< !-- 页面主体内容区域 --></div>
@@ -289,6 +289,26 @@ display: -webkit-box;
 -webkit-box-orient: vertical;
 -webkit-line-clamp: 3;
 overflow: hidden;
+```
+###### css三角
+```
+定义样式：
+思路是用border来宽度来实现小三角 先把4个边线设置成透明
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border: 10px solid;
+            border-color: transparent;
+        }
+分别定义小三角方向 比如想要倒立小三角 那么只需要把上边线添加颜色就好了
+
+
+        .triangle_top {
+            border-top-color: red;
+        }
+<div class="triangle triangle_top"></div>
+
 ```
 
 ## ES6
@@ -653,6 +673,55 @@ Vue.component('base-checkbox', {
 })
 model 选项可以用来避免冲突
 ```
+#### 自定义elemnt table表头样式
+````
+<el-table :header-cell-class-name="headstyle" :data="tableData" border :summary-method="getSummaries" show-summary class="table">
+	<el-table-column prop="b" align="center" label="业务" width="120">
+        <template slot="header" slot-scope=""><span style="display: block; margin-bottom: 37px; margin-left: 40px;">业务类别</span><span style="display: block; margin-top: 0; margin-right: 44px;">承接部门</span></template>
+    </el-table-column>
+</el-table>
+
+headstyle({row, column, rowIndex, columnIndex}) {
+    let width = document.body.offsetWidth;
+    if (columnIndex == 1 && rowIndex == 0 && width >= 1600) {
+        return "slash";
+    } else if (columnIndex == 1 && rowIndex ==0 && width < 1600) {
+        return "slash-wee"
+    }
+ },
+ 
+<style scoped lang="scss">
+  .slash::after {
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:50%;
+    box-sizing:border-box;
+    border-bottom:0.01em solid rgba(49, 49, 49, 0.1);
+    transform-origin:bottom center;
+    transform:rotateZ(40deg) scale(1.414);
+  }
+
+  .slash-wee::after {
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:50%;
+    box-sizing:border-box;
+    border-bottom:0.01em solid rgba(49, 49, 49, 0.1);
+    transform-origin:bottom center;
+    transform:rotateZ(4deg) scale(1.414);
+  }
+
+  .slash div {
+    position: absolute;
+  }
+</style>
+````
 #### 自定义指令
 ```
 钩子函数
@@ -685,6 +754,12 @@ arg：传给指令的参数，可选。例如 v-my-directive:foo 中，参数为
 modifiers：一个包含修饰符的对象。例如：v-my-directive.foo.bar 中，修饰符对象为 { foo: true, bar: true }。
 vnode：Vue 编译生成的虚拟节点。移步 VNode API 来了解更多详情。
 oldVnode：上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用。
+```
+
+## React
+#### create-react-app
+```
+npm run eject 来暴露webpack.config.js 来修改配置
 ```
 
 ## 微信小程序
