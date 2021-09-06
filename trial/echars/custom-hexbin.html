@@ -1,0 +1,322 @@
+<!--
+    THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=custom-hexbin
+-->
+<!DOCTYPE html>
+<html style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+        <script type="text/javascript" src="../../plugins/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="./map.js"></script>
+        <script type="text/javascript" src="./data.js"></script>
+        <!-- Uncomment this line if you want to dataTool extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use gl extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to echarts-stat extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use map
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/map/js/china.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/map/js/world.js"></script>
+        -->
+        <!-- Uncomment these two lines if you want to use bmap extension
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<Your Key Here>"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/bmap.min.js"></script>
+        -->
+
+        <script type="text/javascript">
+var ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+
+var option;
+// console.log(mapRenze)
+// console.log(dataRenze)
+function dataRenzeTo(data) {
+    let res = data.map(item => {
+        return {
+            name: item[0],
+            value: [item[1]/1000000+114,item[2]/1000000+37,item[3]]
+        }
+    })
+    return res
+}
+
+
+
+// Hexbin statistics code based on [d3-hexbin](https://github.com/d3/d3-hexbin)
+function hexBinStatistics(points, r) {
+    var dx = r * 2 * Math.sin(Math.PI / 3);
+    var dy = r * 1.5;
+    var binsById = {};
+    var bins = [];
+
+    for (var i = 0, n = points.length; i < n; ++i) {
+        var point = points[i];
+        var px = point[0];
+        var py = point[1];
+
+        if (isNaN(px) || isNaN(py)) {
+            continue;
+        }
+
+        var pj = Math.round(py = py / dy);
+        var pi = Math.round(px = px / dx - (pj & 1) / 2);
+        var py1 = py - pj;
+
+        if (Math.abs(py1) * 3 > 1) {
+            var px1 = px - pi;
+            var pi2 = pi + (px < pi ? -1 : 1) / 2;
+            var pj2 = pj + (py < pj ? -1 : 1);
+            var px2 = px - pi2;
+            var py2 = py - pj2;
+            if (px1 * px1 + py1 * py1 > px2 * px2 + py2 * py2) {
+                pi = pi2 + (pj & 1 ? 1 : -1) / 2;
+                pj = pj2;
+            }
+        }
+
+        var id = pi + '-' + pj;
+        var bin = binsById[id];
+        if (bin) {
+            bin.points.push(point);
+        }
+        else {
+            bins.push(bin = binsById[id] = {points: [point]});
+            bin.x = (pi + (pj & 1) / 2) * dx;
+            bin.y = pj * dy;
+        }
+    }
+
+    var maxBinLen = -Infinity;
+    for (var i = 0; i < bins.length; i++) {
+        maxBinLen = Math.max(maxBinLen, bins.length);
+    }
+
+    // console.log(bins)
+    return {
+        maxBinLen: maxBinLen,
+        bins: bins
+    };
+}
+
+$.when(
+    $.getJSON(ROOT_PATH + '/data/asset/data/kawhi-leonard-16-17-regular.json'),
+    $.getJSON(ROOT_PATH + '/data/asset/data/nba-court.json')
+).done(function (shotData, nbaCourt) {
+    shotData = shotData[0];
+    nbaCourt = nbaCourt[0];
+    // console.log(shotData)
+    // console.log(nbaCourt.borderGeoJSON)
+    echarts.registerMap('map', mapRenze);
+
+    var backgroundColor = '#014694';
+    var hexagonRadiusInGeo = 1;
+
+    var hexBinResult = hexBinStatistics( // 坐标信息
+        shotData.data.map(function (item) {
+            // "shot_made_flag" made missed
+            var made = item[shotData.schema.indexOf('shot_made_flag')];
+            return [
+                item[shotData.schema.indexOf('loc_x')], // xlocation
+                item[shotData.schema.indexOf('loc_y')], // ylocation
+                made === 'made' ? 1 : 0
+            ];
+        }),
+        hexagonRadiusInGeo
+    );
+
+    var data = hexBinResult.bins.map(function (bin) {
+        var made = 0;
+        bin.points.forEach(function (point) {
+            made += point[2];
+        });
+        return [bin.x, bin.y, bin.points.length, (made / bin.points.length * 100).toFixed(2)];
+    });
+
+    function renderItemHexBin(params, api) {
+        // console.log([api.value(1)/1000000+114,api.value(2)/1000000+37])
+        var center = api.coord([api.value(1)/1000000+114,api.value(2)/1000000+37]);
+        var points = [];
+        var pointsBG = [];
+        var shape = {};
+
+        var maxViewRadius = api.size([hexagonRadiusInGeo, 0])[0];
+        var minViewRadius = Math.min(maxViewRadius, 4);
+        var extentMax = Math.log(Math.sqrt(hexBinResult.maxBinLen));
+        let radius = api.value(3)/2077+1
+        var viewRadius = echarts.number.linearMap(
+            Math.log(Math.sqrt(radius)),
+            [0, extentMax],
+            [minViewRadius, maxViewRadius]
+        );
+        var angle = Math.PI/6;
+        for (var i = 0; i < 6; i++, angle += Math.PI / 3) {
+            // points.push([
+            //     center[0] + viewRadius * Math.cos(angle),
+            //     center[1] + viewRadius * Math.sin(angle)
+            // ]);
+            shape.cx = center[0]
+            shape.cy = center[1]
+            shape.r = viewRadius
+            // pointsBG.push([
+            //     center[0] + maxViewRadius * Math.cos(angle),
+            //     center[1] + maxViewRadius * Math.sin(angle)
+            // ]);
+        }
+
+        return {
+            type: 'group',
+            children: [{
+                type: 'circle',
+                shape: shape,
+                style: {
+                    stroke: '#999',
+                    fill: api.visual('color'),
+                    lineWidth: 1.45
+                }
+            }]
+            // }, {
+            //     type: 'polygon',
+            //     shape: {
+            //         points: pointsBG
+            //     },
+            //     style: {
+            //         stroke: null,
+            //         fill: 'rgba(0,0,0,0.5)',
+            //         lineWidth: 0
+            //     },
+            //     z2: -19
+            // }]
+        };
+    }
+
+    option = {
+        backgroundColor: backgroundColor,
+        tooltip: {
+            backgroundColor: 'rgba(255,255,255,0.9)',
+            textStyle: {
+                color: '#333'
+            },
+            formatter: function(obj) {
+                let name = obj.data.name
+                let value = obj.value
+                // return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
+                //     + name + '</div>'
+                //     + '产值：' + value[2] + '<br>';
+                return '产值：' + value[2] + '<br>';
+            }
+        },
+        animation: true,
+        geo:{
+            show: true,
+            zoom: 1.2,
+            label: {
+              normal: {
+                show: true,
+                color: '#999',
+                fontWeight: 'normal',
+                fontSize: 17
+              },
+            },
+            roam: true,
+            itemStyle: {
+              normal: {
+                areaColor: '#00346e',
+                borderColor: '#999',
+                borderWidth: 4
+              },
+              emphasis: {
+                areaColor: '#CC9933'
+              }
+            },
+            silent: true,
+            map: 'map'
+        },
+        visualMap: {
+            type: 'continuous',
+            orient: 'vertical',
+            left: 30,
+            bottom: 40,
+            min: 0,
+            max: 100,
+            align: 'auto',
+            text: [null, 'FG'],
+            padding: 5,
+            dimension: 2,
+            calculable: true,
+            textStyle: {
+                color: '#eee'
+            },
+            formatter: '{value}',
+            itemWidth: 14,
+            itemHeight: 100,
+            inRange: {
+                // color: ['rgba(0,184,184,1)', 'rgba(0,184,184,1)', 'rgba(254,228,0,1)', 'rgba(254,228,0,1)', 'rgba(254,228,0,1)', 'rgba(255,0,0,0.4)']
+                color: ['#1710c0', '#0b9df0', '#74add1', '#abd9e9', '#00fea8', '#00ff0d', '#f5f811', '#f09a09']
+            }
+        },
+        // series: [{
+        //     type: 'custom',
+        //     coordinateSystem: 'geo',
+        //     geoIndex: 0,
+        //     labelLayout: {
+        //         dataIndex: 0,
+        //         seriesIndex: 0,
+        //         verticalAlign: 'middle',
+        //         align: 'left'
+        //     },
+        //     renderItem: renderItemHexBin,
+        //     data: dataRenze
+        // }]
+        series: [{
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            encode: {
+                value: 2
+            },
+            symbolSize: function (val) {
+                return val[2]/2;
+            },
+            label: {
+                formatter: '{b}',
+                position: 'right'
+            },
+            itemStyle: {
+                borderColor: '#999',
+                borderWidth: 1.45,
+                borderType: 'dotted'
+            },
+            emphasis: {
+                label: {
+                    show: true
+                }
+            },
+            data: dataRenzeTo(dataRenze),
+        }]
+    };
+
+    myChart.setOption(option);
+
+    // var width = 700;
+    // testHelper.createChart(echarts, 'hexagonal-binning', option, {
+    //     width: width,
+    //     height: width * nbaCourt.height / nbaCourt.width
+    // });
+});
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+        </script>
+    </body>
+</html>
+    
