@@ -1072,3 +1072,10 @@ axios(options);
 `/\p{Unified_Ideograph}/u`是正确的，不需要维护，匹配所有汉字。这里`\p`是 Unicode 属性转义正则表达式。
 `/\p{Ideographic}/u` 和 `/\p{Script=Han}/u` 匹配了除了汉字以外的其他一些字符，在「汉字匹配正则表达式」这个需求下，是错的。
 目前 Chrome 和 Safari 支持 Unicode 属性转义正则表达式。对其他环境，使用 7.7 版本的 `@babel/env` 就可以自动根据浏览器规定打开支持。
+
+
+```
+生成签名证书
+keytool -genkey -alias testalias -keyalg RSA -keysize 2048 -validity 36500 -keystore test.keystore
+keytool -list -v -keystore test.keystore
+```
