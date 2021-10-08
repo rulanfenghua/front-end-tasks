@@ -17,6 +17,7 @@
 - [Git](#git)
 - [Sublime](#sublime)
 - [Axios](#axios)
+- [Nginx](#nginx)
 
 ## HTML
 ```
@@ -1078,4 +1079,15 @@ axios(options);
 生成签名证书
 keytool -genkey -alias testalias -keyalg RSA -keysize 2048 -validity 36500 -keystore test.keystore
 keytool -list -v -keystore test.keystore
+```
+
+## Nginx
+```
+start nginx
+tasklist /fi "imagename eq nginx.exe" # 查询nginx启动
+netstat -ano | findstr "80" # 查询端口占用
+nginx -s reload # 重新启动nginx
+nginx -s stop
+nginx -s quit
+taskkill /f /t /im nginx.exe # 停止nginx服务
 ```
