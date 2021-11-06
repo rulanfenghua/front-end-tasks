@@ -1082,12 +1082,21 @@ keytool -list -v -keystore test.keystore
 ```
 
 ## Nginx
+#### windows
 ```
 start nginx
 tasklist /fi "imagename eq nginx.exe" # 查询nginx启动
-netstat -ano | findstr "80" # 查询端口占用
+netstat -ano|findstr "80" # 查询端口占用
 nginx -s reload # 重新启动nginx
 nginx -s stop
 nginx -s quit
 taskkill /f /t /im nginx.exe # 停止nginx服务
+```
+#### linux
+```
+ps -ef|grep nginx # 查询nginx启动
+ll /proc/26562/exe # 查询进程位置
+/usr/sbin/nginx -t # 查询配置文件位置
+netstat -apn|grep 80
+kill -QUIT 2072
 ```

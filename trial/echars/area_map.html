@@ -143,59 +143,54 @@ $.when(
     });
 
     function renderItemHexBin(params, api) {
-        // console.log([api.value(1)/1000000+114,api.value(2)/1000000+37])
-        var center = api.coord([api.value(1)/1000000+114,api.value(2)/1000000+37]);
+        var coords =[
+            [114.664306640625,37.104479392218835],
+            [114.71031188964844,37.115157327708395],
+            [114.71134185791014,37.1408877020046],
+            [114.6818161010742,37.165514968345214],
+            [114.64679718017578,37.16004293569592],
+            [114.64233398437499,37.1337716651635],
+            [114.664306640625,37.104479392218835]];
         var points = [];
-        var pointsBG = [];
-        var shape = {};
-
-        var maxViewRadius = api.size([hexagonRadiusInGeo, 0])[0];
-        var minViewRadius = Math.min(maxViewRadius, 4);
-        var extentMax = Math.log(Math.sqrt(hexBinResult.maxBinLen));
-        let radius = api.value(3)/2077+1
-        var viewRadius = echarts.number.linearMap(
-            Math.log(Math.sqrt(radius)),
-            [0, extentMax],
-            [minViewRadius, maxViewRadius]
-        );
-        var angle = Math.PI/6;
-        for (var i = 0; i < 6; i++, angle += Math.PI / 3) {
-            // points.push([
-            //     center[0] + viewRadius * Math.cos(angle),
-            //     center[1] + viewRadius * Math.sin(angle)
-            // ]);
-            shape.cx = center[0]
-            shape.cy = center[1]
-            shape.r = viewRadius
-            // pointsBG.push([
-            //     center[0] + maxViewRadius * Math.cos(angle),
-            //     center[1] + maxViewRadius * Math.sin(angle)
-            // ]);
+        for (var i = 0; i < coords.length; i++) {
+            points.push(api.coord(coords[i]));
         }
-
+        var color = api.visual('color');
         return {
-            type: 'group',
-            children: [{
-                type: 'circle',
-                shape: shape,
-                style: {
-                    stroke: '#999',
-                    fill: api.visual('color'),
-                    lineWidth: 1.45
-                }
-            }]
-            // }, {
-            //     type: 'polygon',
-            //     shape: {
-            //         points: pointsBG
-            //     },
-            //     style: {
-            //         stroke: null,
-            //         fill: 'rgba(0,0,0,0.5)',
-            //         lineWidth: 0
-            //     },
-            //     z2: -19
-            // }]
+            type: 'polygon',
+            shape: {
+            points: points
+            },
+            style: api.style({
+            fill: color,
+            stroke: echarts.color.lift(color)
+            })
+        };
+    }
+
+    function render(params, api) {
+        var coords =[
+            [114.664306640625,37.104479392218835],
+            [114.71031188964844,37.115157327708395],
+            [114.71134185791014,37.1408877020046],
+            [114.6818161010742,37.165514968345214],
+            [114.64679718017578,37.16004293569592],
+            [114.64233398437499,37.1337716651635],
+            [114.664306640625,37.104479392218835]];
+        var points = [];
+        for (var i = 0; i < coords.length; i++) {
+            points.push(api.coord(coords[i]));
+        }
+        var color = api.visual('color');
+        return {
+            type: 'polygon',
+            shape: {
+            points: points
+            },
+            style: api.style({
+            fill: color,
+            stroke: echarts.color.lift(color)
+            })
         };
     }
 
@@ -277,31 +272,6 @@ $.when(
             renderItem: renderItemHexBin,
             data: dataRenze
         }]
-        // series: [{
-        //     type: 'scatter',
-        //     coordinateSystem: 'geo',
-        //     encode: {
-        //         value: 2
-        //     },
-        //     symbolSize: function (val) {
-        //         return val[2]/2;
-        //     },
-        //     label: {
-        //         formatter: '{b}',
-        //         position: 'right'
-        //     },
-        //     itemStyle: {
-        //         borderColor: '#999',
-        //         borderWidth: 1.45,
-        //         borderType: 'dotted'
-        //     },
-        //     emphasis: {
-        //         label: {
-        //             show: true
-        //         }
-        //     },
-        //     data: dataRenzeTo(dataRenze),
-        // }]
     };
 
     myChart.setOption(option);
